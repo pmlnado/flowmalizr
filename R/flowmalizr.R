@@ -11,6 +11,7 @@
 df <- readxl::read_excel("example_data/example_data.xlsx")
 df <- tidyr::pivot_longer(df, cols = -c(1:3))
 
+
 flowmalizr <- function(df){
     library(tidyverse)
    df <- df %>%
