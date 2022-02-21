@@ -1,0 +1,19 @@
+Package: flowmalizr
+Title: Normalizing Cell Population Percentages
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Pablo",
+           family = "Maldonado",
+           role = c("aut", "cre"),
+           email = "mal.j.pablo@gmail.com"),
+           person(given = "Marcela",
+           family = "Henao-Tamayo",
+           role = c("aut"),
+           email = "marcela.henao_tamayo@colostate.edu"))
+Description: This needs a description.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
