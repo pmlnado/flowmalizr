@@ -1,3 +1,4 @@
+library(tidyverse)
 
 #' flowmalizr
 #'
@@ -13,13 +14,12 @@ df <- tidyr::pivot_longer(df, cols = -c(1:3))
 
 
 flowmalizr <- function(df){
-    library(tidyverse)
    df <- df %>%
-     mutate(cells = (df[,"total_cell_count_per_mL"]*df[,"value"])/(df[,"live_cells"])) %>%
+     mutate(cells = total_cell_count_per_mL*value/live_cells) %>%
      arrange(cells) %>%
      select(1, 4, 6)
-
 return(df)
 }
 
 flowmalizr(df)
+
