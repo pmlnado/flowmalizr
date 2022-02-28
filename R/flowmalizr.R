@@ -7,7 +7,8 @@
 #' @export
 #'
 #' @examples
-#                      work on exp groups vs control groups
+#' path_to_data <- system.file("extdata", "example_data.xlsx", package = "flowmalizr")
+#' flowmalizr(path = path_to_data)
 flowmalizr <- function(path){
    xlsx_file <- readxl::read_excel(path)
    df <- tidyr::pivot_longer(xlsx_file, cols = -c(1:3))
@@ -19,7 +20,3 @@ flowmalizr <- function(path){
 return(df)
 }
 
-flowmalizr("example_data/example_data.xlsx")
-
-
-#                             group vs cell pops
