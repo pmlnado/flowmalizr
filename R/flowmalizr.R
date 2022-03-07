@@ -22,27 +22,29 @@ flowmalizr <- function(path){
       dplyr::mutate(percentage_of_total = cells_from_total/total_cell_count_per_mL*100) %>%
       dplyr::arrange(percentage_of_total)
 
-   return(df)
-df <- return(df)
+return(df)
 }
-
-flowmalizr(path = path_to_data)
-
 # Pull unique gated populations
-unique.pops <- function(df){
+unique.pops <- function(){
+   df <- flowmalizr(path = path_to_data)
    unique <- df %>% dplyr::pull(name) %>% unique()
 
 return(unique)
 }
 
-unique.pops(df)
+# Determine mean populations of experiment
+view_pops <- function(){
+   df <- flowmalizr(path = path_to_data)
+   view <- df %>% dplyr::select(3, 5) %>%
+      dplyr::group_by(name) %>%
+      dplyr::summarise_at(vars(percentage_of_total),funs(mean(.,na.rm=TRUE)))
+   view %>%
+      hist()
+
+return(view)
+}
 
 # Plot percentage of unique populations
-function(df){
-pop <- ggplot2::ggplot(df) +
-   ggplot2::geom_bar(ggplot2::aes(y = df$percentage_of_total, fill = name))
 
-return(pop)
-}
 
 
