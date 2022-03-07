@@ -30,7 +30,6 @@ flowmalizr(path = path_to_data)
 
 # Pull unique gated populations
 unique.pops <- function(df){
-   df <- flowmalizr(path = path_to_data)
    unique <- df %>% dplyr::pull(name) %>% unique()
 
 return(unique)
