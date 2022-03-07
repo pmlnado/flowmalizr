@@ -24,13 +24,16 @@ flowmalizr <- function(path){
 df <- return(df)
 }
 
+flowmalizr(path = path_to_data)
+
 # Pull unique gated populations
 unique.pops <- function(df){
-   unique <- df %>% dplyr::pull(name) %>%
-   unique()
+   unique <- df %>% dplyr::pull(name) %>% unique()
 
 return(unique)
 }
+
+unique.pops(df)
 
 # Plot percentage of unique populations
 function(df){
