@@ -1,8 +1,8 @@
 #' make_df
 #'
-#' @param file
+#' @param path
 #'
-#' @return
+#' @return tidy dataframe made from xls input
 #' @importFrom magrittr %>%
 #' @export
 #'
@@ -11,7 +11,6 @@
 #' flowmalizr(path = path_to_data)
 
 # First function to normalize cell data
-path_to_data <- system.file("extdata", "example_data.xlsx", package = "flowmalizr")
 
 flowmalizr <- function(path){
    xlsx_file <- readxl::read_excel(path)
@@ -24,6 +23,7 @@ flowmalizr <- function(path){
 
 return(df)
 }
+
 # Pull unique gated populations
 unique.pops <- function(){
    df <- flowmalizr(path = path_to_data)
@@ -35,11 +35,7 @@ return(unique)
 # Determine mean populations of experiment
 view_pops <- function(){
    df <- flowmalizr(path = path_to_data)
-   view <- df %>% dplyr::select(3, 5) %>%
-      dplyr::group_by(name) %>%
-      dplyr::summarise_at(vars(percentage_of_total),funs(mean(.,na.rm=TRUE)))
-   view %>%
-      hist()
+   view <- df %>% dplyr::group_by(name) %>% dplyr::summarise_at(vars(percentage_of_total),funs(mean(.,na.rm=TRUE)))
 
 return(view)
 }
