@@ -11,6 +11,8 @@
 #' flowmalizr(path = path_to_data)
 
 # First function to normalize cell data
+path_to_data <- system.file("extdata", "example_data.xlsx", package = "flowmalizr")
+
 flowmalizr <- function(path){
    xlsx_file <- readxl::read_excel(path)
    df <- tidyr::pivot_longer(xlsx_file, cols = -c(1:3))
@@ -28,11 +30,13 @@ flowmalizr(path = path_to_data)
 
 # Pull unique gated populations
 unique.pops <- function(df){
-   unique <- df %>% dplyr::pull(name) %>%
-   unique()
+   df <- flowmalizr(path = path_to_data)
+   unique <- df %>% dplyr::pull(name) %>% unique()
 
 return(unique)
 }
+
+unique.pops(df)
 
 # Plot percentage of unique populations
 function(df){
