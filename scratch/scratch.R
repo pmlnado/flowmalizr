@@ -5,29 +5,62 @@ library(available)
 library(dplyr)
 library(ggplot2)
 library(forcats)
+library(tidyr)
+library(ggmosaic)
 # available("flowmalizr")
 # input cell pup in graph the different groups
 # separate mouse and treatment groups
 
 flowmalizr(path = path_to_data)
-unique.pops()
+sep_groups()
+unique_pops()
 view_pops()
-## plot
-df <- flowmalizr(path = path_to_data)
-view <- df %>% dplyr::group_by(name) %>%
-  dplyr::summarise_at(vars(percentage_of_total),
-                      funs(mean(.,na.rm=TRUE)))
-view <- view %>%
-  mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%"))
 
-ggplot(view, aes(x = fct_reorder(name, percentage_of_total),
-                 y = percentage_of_total, fill = name)) +
+
+
+##################
+gg_sep <- df_sep %>% dplyr::group_by(group, name) %>%
+  dplyr::summarise_at(vars(percentage_of_total),funs(mean(.,na.rm=TRUE))) %>%
+  dplyr::mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%")) %>%
+  dplyr::arrange(desc(percentage_of_total))
+
+gg_sep2 <- gg_sep %>%
+  filter(!is.na(percentage_of_total)) %>%
+  group_by(group) %>%
+  summarise(group, name, Perc, percentage_of_total)
+
+gg_sep3 <- gg_sep %>%
+  filter(!is.na(percentage_of_total)) %>%
+#  group_by(group) %>%
+  summarise(group, name, Perc, percentage_of_total) %>%
+filter(group %in% c(1,2))
+
+gg_sep4 <- gg_sep %>%
+  filter(!is.na(percentage_of_total)) %>%
+  #group_by(group) %>%
+  summarise(group, name, Perc, percentage_of_total)
+
+
+#ALL
+ggplot(data = gg_sep4) + geom_mosaic(aes(x = product(name, Perc), fill = group)) +
+  coord_flip()
+
+
+#FACETED
+ggplot(gg_sep2, aes(x = fct_reorder(name, percentage_of_total),
+                    y = percentage_of_total, fill = group)) +
   geom_bar(stat = "identity") +
-  ylim(0, 100) +
   coord_flip() +
   labs(x = "Phenotype", y = "Mean Percent") +
+  facet_wrap(~group) +
   geom_text(aes(label=Perc), position=position_dodge(width = 0), hjust = -.1,
-            size = 3)
+            size = 3) +
+  scale_y_continuous(limits = c(0, max(gg_sep2$percentage_of_total)))
 
-
+#almost for 1v1 comparison
+ggplot(gg_sep3, aes(x = name, y = percentage_of_total, fill = group)) +
+  geom_bar(position="fill", stat="identity") +
+  coord_flip() +
+  labs(x = "Phenotype", y = "Mean Percent") +
+  geom_text(aes(label = Perc, y = .5), position = position_stack(vjust = 0.5))
 
