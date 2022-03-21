@@ -31,19 +31,31 @@ gg_sep2 <- gg_sep %>%
 
 gg_sep3 <- gg_sep %>%
   filter(!is.na(percentage_of_total)) %>%
-#  group_by(group) %>%
+  group_by(group) %>%
   summarise(group, name, Perc, percentage_of_total) %>%
 filter(group %in% c(1,2))
 
 gg_sep4 <- gg_sep %>%
   filter(!is.na(percentage_of_total)) %>%
-  #group_by(group) %>%
+  group_by(group) %>%
   summarise(group, name, Perc, percentage_of_total)
 
 
 #ALL
-ggplot(data = gg_sep4) + geom_mosaic(aes(x = product(name, Perc), fill = group)) +
-  coord_flip()
+ggplot(data = gg_sep4) +
+  geom_mosaic(aes(x = product(name), na.rm = TRUE,
+                  fill = name, weight = percentage_of_total)) +
+  facet_grid(~group) +
+  coord_flip() +
+  scale_fill_discrete(guide = guide_legend(reverse=TRUE)) +
+  labs(x = "", y = "Group", fill = "Phenotype") +
+  theme(aspect.ratio = 20,
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        legend.key.size = unit(.3, 'cm'),legend.title = element_text(size=10))
+
 
 
 #FACETED
