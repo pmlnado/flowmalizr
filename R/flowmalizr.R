@@ -35,14 +35,13 @@ sep_groups <- function(){
    return(df_sep)
 }
 
-sep_groups()
-
-
-
-
 # Pull unique gated populations
 unique_pops <- function(){
-   unique_pop <<- imported_df %>% dplyr::pull(name) %>% unique()
+   unique_pop <<- df_sep %>% dplyr::group_by(name) %>%
+      dplyr::summarise_at(vars(percentage_of_total),funs(mean(.,na.rm=TRUE))) %>%
+      dplyr::mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%")) %>%
+      dplyr::arrange(desc(percentage_of_total)) %>%
+      dplyr::select(c(1,3))
 
 return(unique_pop)
 }
@@ -53,8 +52,7 @@ view_pops <- function(){
       imported_df %>% dplyr::group_by(name) %>%
       dplyr::summarise_at(vars(percentage_of_total),funs(mean(.,na.rm=TRUE))) %>%
       dplyr::mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%")) %>%
-      dplyr::arrange(desc(percentage_of_total)) %>%
-      dplyr::select(c(1,3))
+      dplyr::arrange(desc(percentage_of_total))
 
 return(vizualise)
 }
