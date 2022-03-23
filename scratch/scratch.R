@@ -20,7 +20,7 @@ view_pops()
 
 ##################
 gg_sep <- df_sep %>% dplyr::group_by(group, name) %>%
-  dplyr::summarise_at(dplyr::vars(percentage_of_total),funs(mean(.,na.rm=TRUE))) %>%
+  dplyr::summarise_at(dplyr::vars(percentage_of_total),dplyr::funs(mean(.,na.rm=TRUE))) %>%
   dplyr::mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%")) %>%
   dplyr::arrange(desc(percentage_of_total))
 
@@ -40,22 +40,21 @@ gg_sep4 <- gg_sep %>%
   dplyr::group_by(group) %>%
   dplyr::summarise(group, name, Perc, percentage_of_total)
 
-
+ggplot2::
 #ALL
-ggplot(data = gg_sep4) +
-  geom_mosaic(aes(x = product(name), na.rm = TRUE,
+ggplot2::ggplot(data = gg_sep4) +
+  ggmosaic::geom_mosaic(ggplot2::aes(x = ggmosaic::product(name), na.rm = TRUE,
                   fill = name, weight = percentage_of_total)) +
-  facet_grid(~group) +
-  coord_flip() +
-  scale_fill_discrete(guide = guide_legend(reverse=TRUE)) +
-  labs(x = "", y = "Group", fill = "Phenotype") +
-  theme(aspect.ratio = 20,
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        legend.key.size = unit(.3, 'cm'),legend.title = element_text(size=10))
-
+  ggplot2::facet_grid(~group) +
+  ggplot2::coord_flip() +
+  ggplot2::scale_fill_discrete(guide = ggplot2::guide_legend(reverse=TRUE)) +
+  ggplot2::labs(x = "", y = "Group", fill = "Phenotype") +
+  ggplot2::theme(aspect.ratio = 20,
+        axis.text.x = ggplot2::element_blank(),
+        axis.ticks.x = ggplot2::element_blank(),
+        axis.text.y = ggplot2::element_blank(),
+        axis.ticks.y = ggplot2::element_blank(),
+        legend.key.size = ggplot2::unit(.3, 'cm'),legend.title = ggplot2::element_text(size=10))
 
 
 #FACETED

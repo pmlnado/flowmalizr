@@ -46,7 +46,8 @@ return(unique_pop)
 view_pops <- function(){
    vizualise <<-
       imported_df %>% dplyr::group_by(name) %>%
-      dplyr::summarise_at(vars(percentage_of_total),funs(mean(.,na.rm=TRUE))) %>%
+      dplyr::summarise_at(dplyr::vars(percentage_of_total),
+                          dplyr::funs(mean(.,na.rm=TRUE))) %>%
       dplyr::mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%")) %>%
       dplyr::arrange(desc(percentage_of_total)) %>%
       dplyr::select(c(1,3))
@@ -55,6 +56,33 @@ return(vizualise)
 }
 
 # Plot percentage of unique populations
+visualize_groups <- function(){
+   gg_visualize <- gg_sep %>%
+   dplyr::filter(!is.na(percentage_of_total)) %>%
+   dplyr::group_by(group) %>%
+   dplyr::summarise(group, name, Perc, percentage_of_total)
+
+   gggroup_visualize <<- ggplot2::ggplot(gg_visualize,
+                ggplot2::aes(x = forcats::fct_reorder(name, percentage_of_total),
+                             y = percentage_of_total, fill = group)) +
+   ggplot2::geom_bar(stat = "identity") +
+   ggplot2::coord_flip() +
+   ggplot2::labs(x = "Phenotype", y = "Mean Percent") +
+   ggplot2::facet_wrap(~group) +
+   ggplot2::geom_text(ggplot2::aes(label=Perc),
+                      position=ggplot2::position_dodge(width = 0), hjust = -.1,
+                      size = 3) +
+   ggplot2::scale_y_continuous(limits = c(0, max(gg_sep2$percentage_of_total)))
+
+return(gggroup_visualize)
+
+}
+
+# 1v1 comparison
+
+group_v_group function(){
 
 
 
+}
+}
