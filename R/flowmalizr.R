@@ -80,9 +80,19 @@ return(gggroup_visualize)
 
 # 1v1 comparison
 
-group_v_group function(){
+group_v_group <- function(groups, groups){
 
-
-
-}
+   gg_1v1 <- gg_sep %>%
+      dplyr::filter(!is.na(percentage_of_total)) %>%
+      dplyr::group_by(group) %>%
+      dplyr::summarise(group, name, Perc, percentage_of_total) %>%
+      dplyr::filter(group %in% c(groups, groups))
+   gg1v1_visualize <- ggplot2::ggplot(gg_1v1, ggplot2::aes(x = name, y = percentage_of_total,
+                                         fill = group)) +
+      ggplot2::geom_bar(position="fill", stat="identity") +
+      ggplot2::coord_flip() +
+      ggplot2::labs(x = "Phenotype", y = "Mean Percent") +
+      ggplot2::geom_text(ggplot2::aes(label = Perc, y = .5),
+                         position = ggplot2::position_stack(vjust = 0.5))
+return(gg1v1_visualize)
 }
