@@ -80,13 +80,13 @@ return(gggroup_visualize)
 
 # 1v1 comparison
 
-group_v_group <- function(groups, groups){
+group_v_group <- function(groupA, groupB){
 
    gg_1v1 <- gg_sep %>%
       dplyr::filter(!is.na(percentage_of_total)) %>%
       dplyr::group_by(group) %>%
       dplyr::summarise(group, name, Perc, percentage_of_total) %>%
-      dplyr::filter(group %in% c(groups, groups))
+      dplyr::filter(group %in% c(groupA, groupB))
    gg1v1_visualize <- ggplot2::ggplot(gg_1v1, ggplot2::aes(x = name, y = percentage_of_total,
                                          fill = group)) +
       ggplot2::geom_bar(position="fill", stat="identity") +
