@@ -20,25 +20,25 @@ view_pops()
 
 ##################
 gg_sep <- df_sep %>% dplyr::group_by(group, name) %>%
-  dplyr::summarise_at(vars(percentage_of_total),funs(mean(.,na.rm=TRUE))) %>%
+  dplyr::summarise_at(dplyr::vars(percentage_of_total),funs(mean(.,na.rm=TRUE))) %>%
   dplyr::mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%")) %>%
   dplyr::arrange(desc(percentage_of_total))
 
 gg_sep2 <- gg_sep %>%
-  filter(!is.na(percentage_of_total)) %>%
-  group_by(group) %>%
-  summarise(group, name, Perc, percentage_of_total)
+  dplyr::filter(!is.na(percentage_of_total)) %>%
+  dplyr::group_by(group) %>%
+  dplyr::summarise(group, name, Perc, percentage_of_total)
 
 gg_sep3 <- gg_sep %>%
-  filter(!is.na(percentage_of_total)) %>%
-  group_by(group) %>%
-  summarise(group, name, Perc, percentage_of_total) %>%
-filter(group %in% c(1,2))
+  dplyr::filter(!is.na(percentage_of_total)) %>%
+  dplyr::group_by(group) %>%
+  dplyr::summarise(group, name, Perc, percentage_of_total) %>%
+  dplyr::filter(group %in% c(1,2))
 
 gg_sep4 <- gg_sep %>%
-  filter(!is.na(percentage_of_total)) %>%
-  group_by(group) %>%
-  summarise(group, name, Perc, percentage_of_total)
+  dplyr::filter(!is.na(percentage_of_total)) %>%
+  dplyr::group_by(group) %>%
+  dplyr::summarise(group, name, Perc, percentage_of_total)
 
 
 #ALL

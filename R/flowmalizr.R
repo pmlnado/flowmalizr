@@ -35,11 +35,6 @@ sep_groups <- function(){
    return(df_sep)
 }
 
-sep_groups()
-
-
-
-
 # Pull unique gated populations
 unique_pops <- function(){
    unique_pop <<- imported_df %>% dplyr::pull(name) %>% unique()
