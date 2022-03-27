@@ -7,10 +7,10 @@
 flowmalizr(path)
 }
 \arguments{
-\item{file}{}
+\item{path}{}
 }
 \value{
-
+tidy dataframe made from xls input
 }
 \description{
 make_df

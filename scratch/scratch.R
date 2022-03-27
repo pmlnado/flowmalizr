@@ -10,7 +10,7 @@ sep_groups()
 unique_pops()
 gg_view_all()
 visualize_groups()
-group_v_group(1,6)
+group_v_group(1,4)
 
 
 
