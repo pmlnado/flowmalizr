@@ -1,8 +1,7 @@
 library(devtools)
 library(roxygen2)
 library(testthat)
-library(available)
-library(dplyr)
+
 
 
 flowmalizr(path = path_to_data)
