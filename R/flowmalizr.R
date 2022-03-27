@@ -38,9 +38,10 @@ sep_groups <- function(){
 # Pull unique gated populations
 unique_pops <- function(){
    unique_pop <<- df_sep %>% dplyr::group_by(name) %>%
-      dplyr::summarise_at(vars(percentage_of_total),funs(mean(.,na.rm=TRUE))) %>%
+      dplyr::summarise_at(dplyr::vars(percentage_of_total),
+                          dplyr::funs(mean(.,na.rm=TRUE))) %>%
       dplyr::mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%")) %>%
-      dplyr::arrange(desc(percentage_of_total)) %>%
+      dplyr::arrange(dplyr::desc(percentage_of_total)) %>%
       dplyr::select(c(1,3))
 
 return(unique_pop)
@@ -48,8 +49,7 @@ return(unique_pop)
 
 # Determine mean populations of experiment
 view_pops <- function(){
-   vizualise <<-
-      imported_df %>% dplyr::group_by(name) %>%
+   gg_sep <<- df_sep %>% dplyr::group_by(name) %>%
       dplyr::summarise_at(dplyr::vars(percentage_of_total),
                           dplyr::funs(mean(.,na.rm=TRUE))) %>%
       dplyr::mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%")) %>%
@@ -60,6 +60,11 @@ return(vizualise)
 
 # Plot percentage of unique populations
 visualize_groups <- function(){
+   gg_sep <<- df_sep %>% dplyr::group_by(group, name) %>%
+      dplyr::summarise_at(dplyr::vars(percentage_of_total),dplyr::funs(mean(.,na.rm=TRUE))) %>%
+      dplyr::mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%")) %>%
+      dplyr::arrange(desc(percentage_of_total))
+
    gg_visualize <- gg_sep %>%
    dplyr::filter(!is.na(percentage_of_total)) %>%
    dplyr::group_by(group) %>%
@@ -75,7 +80,7 @@ visualize_groups <- function(){
    ggplot2::geom_text(ggplot2::aes(label=Perc),
                       position=ggplot2::position_dodge(width = 0), hjust = -.1,
                       size = 3) +
-   ggplot2::scale_y_continuous(limits = c(0, max(gg_sep2$percentage_of_total)))
+   ggplot2::scale_y_continuous(limits = c(0, max(gg_sep$percentage_of_total)))
 
 return(gggroup_visualize)
 

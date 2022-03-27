@@ -11,6 +11,7 @@ library(ggmosaic)
 # input cell pup in graph the different groups
 # separate mouse and treatment groups
 
+
 flowmalizr(path = path_to_data)
 sep_groups()
 unique_pops()
@@ -60,6 +61,7 @@ legend.title = ggplot2::element_text(size=10))
 
 
 #FACETED
+
 ggplot2::ggplot(gg_sep2,
                 ggplot2::aes(x = forcats::fct_reorder(name, percentage_of_total),
                     y = percentage_of_total, fill = group)) +
