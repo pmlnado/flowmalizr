@@ -47,17 +47,6 @@ unique_pops <- function(){
 return(unique_pop)
 }
 
-# Determine mean populations of experiment
-view_pops <- function(){
-   gg_sep <<- df_sep %>% dplyr::group_by(name) %>%
-      dplyr::summarise_at(dplyr::vars(percentage_of_total),
-                          dplyr::funs(mean(.,na.rm=TRUE))) %>%
-      dplyr::mutate(Perc = paste0(round(percentage_of_total, digits = 2), "%")) %>%
-      dplyr::arrange(desc(percentage_of_total))
-
-return(vizualise)
-}
-
 # Plot percentage of unique populations
 visualize_groups <- function(){
    gg_sep <<- df_sep %>% dplyr::group_by(group, name) %>%
