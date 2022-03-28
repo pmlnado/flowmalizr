@@ -14,13 +14,23 @@ knitr::opts_chunk$set(
 )
 ```
 
-Flowmalizr takes an xls input sheet containing columns listed as groups, total_cell_count_per_mL, live_cells, and phenotypes of interest. Each row contains 
-a group-replicate, cell number per mL, live cell count, and cells identified, 
-respectively. This is used to detemine cells_from_total and percentage of total by (total_cell_count_per_mL*cells-of-phenotype/live_cells)*100. The output from this 
+`Flowmalizr` takes an xls input sheet containing columns listed as groups, total_cell_count_per_mL, live_cells, and phenotypes of interest. these contain a group-replicate, 
+cell number per mL, live cell count, and cells identified, respectively. 
+This is used to detemine cells_from_total and percentage of total by (total_cell_count_per_mL*cells-of-phenotype/live_cells)*100. The output from this 
 function is a dataframe that can be manipulated for visualization of cell phenotypes 
-from each group
+from each group.
 
+The rest of this package uses functions as commands to further interpret and visualize the data.
 
+`sep_groups()`
+
+`unique_pops()`
+
+`gg_view_all()`
+
+`visualize_groups()`
+
+`group_v_group(groupA, groupB)`
 
 
 
