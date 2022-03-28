@@ -2,7 +2,7 @@
 % Please edit documentation in R/flowmalizr.R
 \name{flowmalizr}
 \alias{flowmalizr}
-\title{Normalize cell counts and compare cell phenotype}
+\title{Normalize flow data cell counts and compare cell phenotypes}
 \usage{
 flowmalizr(path)
 }
@@ -14,11 +14,12 @@ Longer dataframe with data under new "name", "cells_from_total", and
 "percentage_of_total" columns.
 }
 \description{
-\code{flowmalizr} takes an xls input sheet containing columns listed as
-groups, total_cell_count_per_mL, live_cells, and phenotypes of interest. Each
-row contains a group-replicate, cell number per mL, live cell count, and
-cells identified, respectively. This is used to detemine cells_from_total and
-percentage of total by (total_cell_count_per_mL*cells-of-phenotype/live_cells)*100.
+\code{flowmalizr()} takes an xls input sheet containing columns listed as
+groups, total_cell_count_per_mL, live_cells, and phenotypes of interest.
+Each row contains a group-replicate, cell number per mL, live cell count,
+and cells identified, respectively. This is used to detemine
+cells_from_total and percentage_of_total by
+(total_cell_count_per_mL*cells-of-phenotype/live_cells)*100.
 The output from this function is a dataframe that can be manipulated for
 visualization of cell phenotypes from each group
 }

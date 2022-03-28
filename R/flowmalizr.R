@@ -1,10 +1,11 @@
-#' Normalize cell counts and compare cell phenotype
+#' Normalize flow data cell counts and compare cell phenotypes
 #'
-#' \code{flowmalizr} takes an xls input sheet containing columns listed as
-#' groups, total_cell_count_per_mL, live_cells, and phenotypes of interest. Each
-#' row contains a group-replicate, cell number per mL, live cell count, and
-#' cells identified, respectively. This is used to detemine cells_from_total and
-#' percentage_of_total by (total_cell_count_per_mL*cells-of-phenotype/live_cells)*100.
+#' \code{flowmalizr()} takes an xls input sheet containing columns listed as
+#' groups, total_cell_count_per_mL, live_cells, and phenotypes of interest.
+#' Each row contains a group-replicate, cell number per mL, live cell count,
+#' and cells identified, respectively. This is used to detemine
+#' cells_from_total and percentage_of_total by
+#' (total_cell_count_per_mL*cells-of-phenotype/live_cells)*100.
 #' The output from this function is a dataframe that can be manipulated for
 #' visualization of cell phenotypes from each group
 #'
@@ -37,7 +38,18 @@ return(imported_df)
 
 
 
-#Separate group and replicate into their own columns
+#' Separate group and replicate into their own columns
+#'
+#' \code{sep_group()} takes the newly generated \code{imported_df} and separates
+#' groups from replicates for more accurate analysis when determining phenotypes
+#' observed per group
+#'
+#' @param sep_group()
+#' @return New df with group and replicate in their own columns
+#' @export
+#'
+#' @examples
+#' sep_groups()
 sep_groups <- function(){
    df_sep <<- imported_df %>%
       tidyr::separate(groups, c("group", "replicate"),
