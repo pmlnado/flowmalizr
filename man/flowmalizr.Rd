@@ -26,4 +26,5 @@ visualization of cell phenotypes from each group
 \examples{
 path_to_data <- system.file("extdata", "example_data.xlsx", package = "flowmalizr")
 flowmalizr(path_to_data)
+
 }

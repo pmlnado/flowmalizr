@@ -15,5 +15,6 @@ groups from replicates for more accurate analysis when determining phenotypes
 observed per group
 }
 \examples{
-sep_group()
+sep_groups()
+
 }

@@ -20,8 +20,7 @@
 #' @examples
 #' path_to_data <- system.file("extdata", "example_data.xlsx", package = "flowmalizr")
 #' flowmalizr(path_to_data)
-
-# First function to normalize cell data
+#'
 
 flowmalizr <- function(path){
    xlsx_file <- readxl::read_excel(path)
@@ -46,10 +45,13 @@ return(imported_df)
 #'
 #' @param sep_group()
 #' @return New df with group and replicate in their own columns
+#'
+#' @importFrom magrittr %>%
 #' @export
 #'
 #' @examples
 #' sep_groups()
+#'
 sep_groups <- function(){
    df_sep <<- imported_df %>%
       tidyr::separate(groups, c("group", "replicate"),
@@ -58,7 +60,18 @@ sep_groups <- function(){
    return(df_sep)
 }
 
-# Pull unique gated populations
+
+#' Pull unique gated populations
+#'
+#' Description...
+#' @return
+#'
+#' @importFrom magrittr %>%
+#' @export
+#'
+#' @examples
+#' unique_pops()
+#'
 unique_pops <- function(){
    unique_pop <<- df_sep %>% dplyr::group_by(name) %>%
       dplyr::summarise_at(dplyr::vars(percentage_of_total),
@@ -72,39 +85,16 @@ return(unique_pop)
 
 }
 
-# View all phenotype's in each  group
-gg_view_all <- function(){
-   library(ggplot2)
-   library(ggmosaic)
-   gg_view_all_arranged <- df_sep  %>% dplyr::group_by(group, name) %>%
-      dplyr::summarise_at(dplyr::vars(percentage_of_total),
-                          dplyr::funs(mean(.,na.rm=TRUE))) %>%
-      dplyr::mutate(Perc = paste0(round(percentage_of_total,
-                                        digits = 2), "%")) %>%
-      dplyr::arrange(desc(percentage_of_total)) %>%
-      dplyr::filter(!is.na(percentage_of_total)) %>%
-      dplyr::group_by(group) %>%
-      dplyr::summarise(group, name, Perc, percentage_of_total)
-
-   gg_view_all <<- ggplot2::ggplot(data = gg_view_all_arranged) +
-      ggmosaic::geom_mosaic(ggplot2::aes(x = ggmosaic::product(name),
-                                         na.rm = TRUE,fill = name, weight = percentage_of_total)) +
-      ggplot2::facet_grid(~group) +
-      ggplot2::coord_flip() +
-      ggplot2::scale_fill_discrete(guide = ggplot2::guide_legend(reverse=TRUE)) +
-      ggplot2::labs(x = "", y = "Group", fill = "Phenotype") +
-      ggplot2::theme(aspect.ratio = 20,
-                     axis.text.x = ggplot2::element_blank(),
-                     axis.ticks.x = ggplot2::element_blank(),
-                     axis.text.y = ggplot2::element_blank(),
-                     axis.ticks.y = ggplot2::element_blank(),
-                     legend.key.size = ggplot2::unit(.3, 'cm'),
-                     legend.title = ggplot2::element_text(size=10))
-return(gg_view_all)
-}
-
-
-# Plot percentage of unique populations
+#' Plot percentage of unique populations
+#'
+#' Description...
+#' @return
+#'
+#' @importFrom magrittr %>%
+#' @export
+#'
+#' @examples
+#' visualize_groups()
 visualize_groups <- function(){
    gg_sep <<- df_sep %>% dplyr::group_by(group, name) %>%
       dplyr::summarise_at(dplyr::vars(percentage_of_total),
@@ -134,8 +124,21 @@ return(gggroup_visualize)
 
 }
 
-# 1v1 comparison
 
+
+#' 1v1 comparison
+#'
+#' Description...
+#' @param x groupA
+#' @param y groupB
+#'
+#' @return
+#'
+#' @importFrom magrittr %>%
+#' @export
+#'
+#' @examples
+#' group_v_group(1, 4)
 group_v_group <- function(groupA, groupB){
 
    gg_1v1 <- gg_sep %>%
