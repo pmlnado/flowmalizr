@@ -13,11 +13,44 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-TEST
+
+\code{flowmalizr} takes an xls input sheet containing columns listed as groups, total_cell_count_per_mL, live_cells, and phenotypes of interest. Each row contains a group-replicate, cell number per mL, live cell count, and cells identified, respectively. This is used to detemine cells_from_total and percentage of total by (total_cell_count_per_mL*cells-of-phenotype/live_cells)*100. The output from this function is a dataframe that can be manipulated for visualization of cell phenotypes from each group
+
+
+
+
+
+
+
+
+Load flowmalizr()
 ```{r setup}
 library(flowmalizr)
 ```
+Read in the raw file and name it as \code{path_to_data}
+```{r}
+path_to_data <- system.file("extdata", "example_data.xlsx", package = "flowmalizr")
 
-?devtools()
+flowmalizr(path = path_to_data)
+```
+#Separate group and replicate into their own columns
+```{r}
+sep_groups()
+```
+# Pull unique gated populations
+```{r}
+unique_pops()
+```
+# View all phenotype's in each  group
+```{r}
+gg_view_all()
+```
+# Plot percentage of unique populations
+```{r}
+visualize_groups()
+```
+# 1v1 comparison
+```{r}
+group_v_group(1,4)
+```
 
-?flowmalizr()
