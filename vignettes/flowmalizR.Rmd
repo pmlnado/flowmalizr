@@ -53,7 +53,8 @@ flowmalizr(path = path_to_data)
 ```{r}
 #visualize_groups()
 ```
-### 1v1 comparison: enter two groups to compare their phenotypic responses
+### 1v1 comparison: Enter no more than two groups to compare their phenotypic responses. 
+
 ```{r}
 #group_v_group(1,4)
 ```
