@@ -38,34 +38,46 @@ The rest of this package uses functions as commands to further interpret and vis
 
 
 ### Load `flowmalizr()`
+
 ```{r setup}
 library(flowmalizr)
 ```
+
 ### Read in the raw file and name it as `path_to_data`
+
 ```{r}
 path_to_data <- system.file("extdata", "example_data.xlsx", package = "flowmalizr")
 
 flowmalizr(path = path_to_data)
 ```
+
 ### Separate group and replicate into their own columns
+
 ```{r}
-#sep_groups()
+sep_groups()
 ```
+
 ### Pull unique gated populations
+
 ```{r}
-#unique_pops()
+unique_pops()
 ```
+
 ### View all phenotype's in each group
+
 ```{r}
 #gg_view_all()
 ```
+
 ### Plot percentage of populations per group
+
 ```{r}
-#visualize_groups()
+visualize_groups()
 ```
+
 ### 1v1 comparison: Enter no more than two groups to compare their phenotypic responses. 
 
 ```{r}
-#group_v_group(1,4)
+group_v_group(1,4)
 ```
 

@@ -9,7 +9,7 @@ sep_groups()
 unique_pops()
 gg_view_all()
 visualize_groups()
-group_v_group(1,4)
+group_v_group(1,2)
 
 # View all phenotype's in each  group
 

@@ -9,7 +9,7 @@
 #' The output from this function is a dataframe that can be manipulated for
 #' visualization of cell phenotypes from each group
 #'
-#' @param path_to_data
+#' @param path chracter string boah blah path_to_data
 #'
 #' @return Longer dataframe with data under new "name", "cells_from_total", and
 #' "percentage_of_total" columns.
