@@ -1,6 +1,6 @@
-#' make_df
+#' Normalize cell counts and compare cell phenotype
 #'
-#' @param path
+#' @param path_to_data
 #'
 #' @return tidy dataframe made from xls input
 #' @importFrom magrittr %>%
@@ -24,6 +24,8 @@ flowmalizr <- function(path){
 return(imported_df)
 
 }
+
+
 
 #Separate Group and Replicate
 sep_groups <- function(){

@@ -2,18 +2,18 @@
 % Please edit documentation in R/flowmalizr.R
 \name{flowmalizr}
 \alias{flowmalizr}
-\title{make_df}
+\title{Normalize cell counts and compare cell phenotype}
 \usage{
 flowmalizr(path)
 }
 \arguments{
-\item{path}{}
+\item{groupB.}{}
 }
 \value{
 tidy dataframe made from xls input
 }
 \description{
-make_df
+Normalize cell counts and compare cell phenotype
 }
 \examples{
 path_to_data <- system.file("extdata", "example_data.xlsx", package = "flowmalizr")
