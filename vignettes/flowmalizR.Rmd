@@ -63,21 +63,15 @@ sep_groups()
 unique_pops()
 ```
 
-### View all phenotype's in each group
-
-```{r}
-#gg_view_all()
-```
-
 ### Plot percentage of populations per group
 
-```{r}
+```{r, fig.width=9, fig.height=8}
 visualize_groups()
 ```
 
 ### 1v1 comparison: Enter no more than two groups to compare their phenotypic responses. 
 
-```{r}
+```{r, fig.width=9, fig.height=8}
 group_v_group(1,4)
 ```
 
