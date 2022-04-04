@@ -63,7 +63,7 @@ sep_groups <- function(){
 
 #' Pull unique gated populations
 #'
-#' Description...
+#' \code{unique_pops()} provides a quick view of all phenotypes to be analyzed using this package
 #' @return
 #'
 #' @importFrom magrittr %>%
@@ -87,7 +87,8 @@ return(unique_pop)
 
 #' Plot percentage of unique populations
 #'
-#' Description...
+#' \code{visualize_groups()} plots and averages biological replicates for visualization of
+#' all groups and phenotypes
 #' @return
 #'
 #' @importFrom magrittr %>%
@@ -129,7 +130,7 @@ return(gggroup_visualize)
 
 #' 1v1 comparison
 #'
-#' Description...
+#' \code{roup_v_group()} allows for visual group vs group comparison of analyzed phenotypes
 #' @param x groupA
 #' @param y groupB
 #'

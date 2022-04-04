@@ -10,7 +10,7 @@ unique_pops()
 
 }
 \description{
-Description...
+\code{unique_pops()} provides a quick view of all phenotypes to be analyzed using this package
 }
 \examples{
 unique_pops()

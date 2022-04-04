@@ -10,7 +10,8 @@ visualize_groups()
 
 }
 \description{
-Description...
+\code{visualize_groups()} plots and averages biological replicates for visualization of
+all groups and phenotypes
 }
 \examples{
 visualize_groups()

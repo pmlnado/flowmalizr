@@ -15,7 +15,7 @@ group_v_group(groupA, groupB)
 
 }
 \description{
-Description...
+\code{roup_v_group()} allows for visual group vs group comparison of analyzed phenotypes
 }
 \examples{
 group_v_group(1, 4)
