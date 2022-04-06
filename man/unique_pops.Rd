@@ -7,7 +7,7 @@
 unique_pops()
 }
 \value{
-
+A list of all populations and their percentages found in the experiment
 }
 \description{
 \code{unique_pops()} provides a quick view of all phenotypes to be analyzed using this package

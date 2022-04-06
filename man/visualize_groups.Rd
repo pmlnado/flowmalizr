@@ -7,7 +7,8 @@
 visualize_groups()
 }
 \value{
-
+A group facet wrapped series of graphs plotted by averaging biological
+replicates to demonstrate percentage of phenotype populations
 }
 \description{
 \code{visualize_groups()} plots and averages biological replicates for visualization of

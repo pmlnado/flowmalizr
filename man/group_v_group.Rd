@@ -7,12 +7,12 @@
 group_v_group(groupA, groupB)
 }
 \arguments{
-\item{x}{groupA}
+\item{groupA}{is group}
 
-\item{y}{groupB}
+\item{groupB}{is group}
 }
 \value{
-
+A 1v1 visual of phenotype per group
 }
 \description{
 \code{roup_v_group()} allows for visual group vs group comparison of analyzed phenotypes
