@@ -33,6 +33,7 @@ flowmalizr <- function(path){
 
 return(imported_df)
 
+   globalVariables(c("<<-", "imported_df", "total_cell_count_per_mL"))
 }
 
 
