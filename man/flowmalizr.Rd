@@ -7,7 +7,7 @@
 flowmalizr(path)
 }
 \arguments{
-\item{path}{chracter string boah blah path_to_data}
+\item{path}{character string that leads to path_to_data}
 }
 \value{
 Longer dataframe with data under new "name", "cells_from_total", and

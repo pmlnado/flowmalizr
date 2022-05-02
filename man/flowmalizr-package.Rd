@@ -2,8 +2,9 @@
 % Please edit documentation in R/flowmalizr-package.R
 \docType{package}
 \name{flowmalizr-package}
-\alias{flowmalizr}
 \alias{flowmalizr-package}
+\alias{_PACKAGE}
+\alias{documentation}
 \title{flowmalizr: Normalizing Cell Population Percentages}
 \description{
 This needs a description.

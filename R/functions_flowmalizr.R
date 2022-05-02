@@ -9,7 +9,7 @@
 #' The output from this function is a dataframe that can be manipulated for
 #' visualization of cell phenotypes from each group
 #'
-#' @param path chracter string boah blah path_to_data
+#' @param path character string that leads to path_to_data
 #'
 #' @return Longer dataframe with data under new "name", "cells_from_total", and
 #' "percentage_of_total" columns.
@@ -33,7 +33,6 @@ flowmalizr <- function(path){
 
 return(imported_df)
 
-   globalVariables(c("<<-", "imported_df", "total_cell_count_per_mL"))
 }
 
 
@@ -44,7 +43,6 @@ return(imported_df)
 #' groups from replicates for more accurate analysis when determining phenotypes
 #' observed per group
 #'
-#' @param sep_group()
 #' @return New df with group and replicate in their own columns
 #'
 #' @importFrom magrittr %>%
@@ -65,6 +63,7 @@ sep_groups <- function(){
 #' Pull unique gated populations
 #'
 #' \code{unique_pops()} provides a quick view of all phenotypes to be analyzed using this package
+#'
 #' @return A list of all populations and their percentages found in the experiment
 #'
 #' @importFrom magrittr %>%
@@ -90,6 +89,7 @@ return(unique_pop)
 #'
 #' \code{visualize_groups()} plots and averages biological replicates for visualization of
 #' all groups and phenotypes
+#'
 #' @return A group facet wrapped series of graphs plotted by averaging biological
 #' replicates to demonstrate percentage of phenotype populations
 #'
@@ -104,7 +104,7 @@ visualize_groups <- function(){
                           dplyr::funs(mean(.,na.rm=TRUE))) %>%
       dplyr::mutate(Perc = paste0(round(percentage_of_total,
                                         digits = 2), "%")) %>%
-      dplyr::arrange(desc(percentage_of_total))
+      dplyr::arrange(dplyr::desc(percentage_of_total))
 
    gg_visualize <- gg_sep %>%
    dplyr::filter(!is.na(percentage_of_total)) %>%
@@ -134,8 +134,8 @@ return(gggroup_visualize)
 #'
 #' \code{roup_v_group()} allows for visual group vs group comparison of analyzed phenotypes
 #'
-#' @param groupA is group
-#' @param groupB is group
+#' @param groupA is group x
+#' @param groupB is group y
 #'
 #' @return A 1v1 visual of phenotype per group
 #'

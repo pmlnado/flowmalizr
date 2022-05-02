@@ -7,9 +7,9 @@
 group_v_group(groupA, groupB)
 }
 \arguments{
-\item{groupA}{is group}
+\item{groupA}{is group x}
 
-\item{groupB}{is group}
+\item{groupB}{is group y}
 }
 \value{
 A 1v1 visual of phenotype per group
