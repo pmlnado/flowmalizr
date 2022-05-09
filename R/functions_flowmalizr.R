@@ -109,6 +109,7 @@ return(unique_pop)
 #' replicates to demonstrate percentage of phenotype populations
 #'
 #' @importFrom magrittr %>%
+#' @importFrom utils globalVariables
 #' @export
 #'
 #' @examples
@@ -159,6 +160,7 @@ return(gggroup_visualize)
 #' @return A 1v1 visual of phenotype per group
 #'
 #' @importFrom magrittr %>%
+#' @importFrom utils globalVariables
 #' @export
 #'
 #' @examples
