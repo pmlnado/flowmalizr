@@ -20,7 +20,6 @@ Imports:
     base,
     dplyr,
     forcats,
-    ggmosaic,
     ggplot2,
     magrittr,
     readxl,

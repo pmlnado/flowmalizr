@@ -25,11 +25,8 @@
 
 flowmalizr <- function(path){
 
-utils::globalVariables("<<-")
-   # utils::globalVariables(c("cells_from_total", "total_cell_count_per_mL", "value", "live_cells", "percentage_of_total"))
-
    xlsx_file <- readxl::read_excel(path)
-   imported_df <<- tidyr::pivot_longer(xlsx_file, cols = -c(1:3))
+   imported_df <- tidyr::pivot_longer(xlsx_file, cols = -c(1:3))
    imported_df <<- imported_df %>%
       dplyr::mutate(cells_from_total = total_cell_count_per_mL*value/live_cells) %>%
       dplyr::select(1, 2, 4, 6) %>%
@@ -59,9 +56,6 @@ return(imported_df)
 #'
 sep_groups <- function(){
 
-utils::globalVariables("<<-")
-   # utils::globalVariables(c("groups", "imported_df", "def_sep"))
-
    df_sep <<- imported_df %>%
       tidyr::separate(groups, c("group", "replicate"),
                                  sep = "(?=[A-Za-z])(?<=[0-9])|(?=[0-9])(?<=[A-Za-z])")
@@ -84,9 +78,6 @@ utils::globalVariables("<<-")
 #' unique_pops()
 #'
 unique_pops <- function(){
-
-utils::globalVariables("<<-")
-   # utils::globalVariables(c("name", "imported_df", "def_sep", "percentage_of_total", ".", "unique_pop"))
 
    unique_pop <<- df_sep %>% dplyr::group_by(name) %>%
       dplyr::summarise_at(dplyr::vars(percentage_of_total),
@@ -114,10 +105,8 @@ return(unique_pop)
 #'
 #' @examples
 #' visualize_groups()
-visualize_groups <- function(){
 
-utils::globalVariables("<<-")
-   # utils::globalVariables(c("name", "imported_df", "def_sep", "percentage_of_total", ".", "unique_pop", "gg_sep", "Perc", "gggroup_visualize"))
+visualize_groups <- function(){
 
    gg_sep <<- df_sep %>% dplyr::group_by(group, name) %>%
       dplyr::summarise_at(dplyr::vars(percentage_of_total),
@@ -131,7 +120,7 @@ utils::globalVariables("<<-")
    dplyr::group_by(group) %>%
    dplyr::summarise(group, name, Perc, percentage_of_total)
 
-   gggroup_visualize <<- ggplot2::ggplot(gg_visualize,
+   gggroup_visualize <- ggplot2::ggplot(gg_visualize,
                 ggplot2::aes(x = forcats::fct_reorder(name, percentage_of_total),
                              y = percentage_of_total, fill = group)) +
    ggplot2::geom_bar(stat = "identity") +
@@ -166,9 +155,6 @@ return(gggroup_visualize)
 #' @examples
 #' group_v_group(1, 4)
 group_v_group <- function(groupA, groupB){
-
-utils::globalVariables("<<-")
-   # utils::globalVariables(c("name", "group", "percentage_of_total", "gg_sep", "Perc"))
 
    gg_1v1 <- gg_sep %>%
       dplyr::filter(!is.na(percentage_of_total)) %>%
