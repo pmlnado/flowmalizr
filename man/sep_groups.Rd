@@ -16,5 +16,4 @@ observed per group
 }
 \examples{
 sep_groups()
-
 }

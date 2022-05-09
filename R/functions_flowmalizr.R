@@ -53,7 +53,7 @@ return(imported_df)
 #'
 #' @examples
 #' sep_groups()
-#'
+
 sep_groups <- function(){
 
    df_sep <<- imported_df %>%
@@ -154,6 +154,7 @@ return(gggroup_visualize)
 #'
 #' @examples
 #' group_v_group(1, 4)
+
 group_v_group <- function(groupA, groupB){
 
    gg_1v1 <- gg_sep %>%
