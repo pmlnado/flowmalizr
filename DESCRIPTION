@@ -24,6 +24,7 @@ Imports:
     ggplot2,
     magrittr,
     readxl,
+    rlang,
     tidyr,
     utils
 Suggests: 
