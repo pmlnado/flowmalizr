@@ -66,12 +66,21 @@ unique_pops()
 ### Plot percentage of populations per group
 
 ```{r, fig.width=9, fig.height=8}
-visualize_groups()
+groups <- visualize_groups()
+pdf(file="groups.pdf")
+plot(groups)
+dev.off()
 ```
 
 ### 1v1 comparison: Enter no more than two groups to compare their phenotypic responses. 
 
 ```{r, fig.width=9, fig.height=8}
-group_v_group(1,4)
+one_v_one_plot <- group_v_group(1,4)
+
+
+pdf(file="one_v_one_plot.pdf")
+plot(one_v_one_plot)
+dev.off()
+
 ```
 
