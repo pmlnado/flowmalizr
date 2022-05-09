@@ -79,7 +79,7 @@ sep_groups <- function(){
 #'
 unique_pops <- function(){
 
-   unique_pop <<- df_sep %>% dplyr::group_by(name) %>%
+   unique_pop <- df_sep %>% dplyr::group_by(name) %>%
       dplyr::summarise_at(dplyr::vars(percentage_of_total),
                           dplyr::funs(mean(.,na.rm=TRUE))) %>%
       dplyr::mutate(Perc = paste0(round(percentage_of_total,
