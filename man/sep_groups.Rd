@@ -15,6 +15,5 @@ groups from replicates for more accurate analysis when determining phenotypes
 observed per group
 }
 \examples{
-imported_df <- imported_df
 sep_groups()
 }

@@ -18,5 +18,6 @@ A 1v1 visual of phenotype per group
 \code{roup_v_group()} allows for visual group vs group comparison of analyzed phenotypes
 }
 \examples{
-group_v_group(1, 4)
+group_v_group(1, 3)
+
 }

@@ -1,4 +1,4 @@
 ^flowmalizr\.Rproj$
 ^\.Rproj\.user$
-^scratch/*$
 ^LICENSE\.md$
+^cran-comments\.md$

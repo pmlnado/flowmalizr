@@ -26,8 +26,6 @@ The rest of this package uses functions as commands to further interpret and vis
 
 `unique_pops()`
 
-`gg_view_all()`
-
 `visualize_groups()`
 
 `group_v_group(groupA, groupB)`
@@ -73,7 +71,7 @@ visualize_groups()
 ### 1v1 comparison: Enter no more than two groups to compare their phenotypic responses. 
 
 ```{r, fig.width=9, fig.height=8}
-group_v_group(1,4)
+group_v_group(1,3)
 
 
 

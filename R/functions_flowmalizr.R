@@ -56,9 +56,10 @@ return(imported_df)
 
 sep_groups <- function(){
 
-   df_sep <<- imported_df %>%
+   df_sep <- imported_df %>%
       tidyr::separate(groups, c("group", "replicate"),
                                  sep = "(?=[A-Za-z])(?<=[0-9])|(?=[0-9])(?<=[A-Za-z])")
+   df_sep <<- df_sep
 
    return(df_sep)
 }
@@ -108,12 +109,14 @@ return(unique_pop)
 
 visualize_groups <- function(){
 
-   gg_sep <<- df_sep %>% dplyr::group_by(group, name) %>%
+   gg_sep <- df_sep %>% dplyr::group_by(group, name) %>%
       dplyr::summarise_at(dplyr::vars(percentage_of_total),
                           dplyr::funs(mean(.,na.rm=TRUE))) %>%
       dplyr::mutate(Perc = paste0(round(percentage_of_total,
                                         digits = 2), "%")) %>%
       dplyr::arrange(dplyr::desc(percentage_of_total))
+
+   gg_sep <<- gg_sep
 
    gg_visualize <- gg_sep %>%
    dplyr::filter(!is.na(percentage_of_total)) %>%
@@ -153,8 +156,8 @@ return(gggroup_visualize)
 #' @export
 #'
 #' @examples
-#' group_v_group(1, 4)
-
+#' group_v_group(1, 3)
+#'
 group_v_group <- function(groupA, groupB){
 
    gg_1v1 <- gg_sep %>%
