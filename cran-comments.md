@@ -1,7 +1,7 @@
 ## R CMD check results
-There were no WARNINGs. 
+There were no WARNINGs and no NOTEs. 
 
-There was 1 ERROR and 1 NOTE:
+There was 1 ERROR:
 
 ERROR 
 * checking examples ... ERROR
@@ -15,19 +15,15 @@ ERROR
  
  ### ** Examples
  
- group_v_group(1, 4)
+ group_v_group(1, 3)
   Error in dplyr::filter(., !is.na(percentage_of_total)) : 
     object 'gg_sep' not found
   Calls: group_v_group ... <Anonymous> -> <Anonymous> -> <Anonymous> -> <Anonymous>
   Execution halted
 
-NOTE
-* checking R code for possible problems ... NOTE
-  sep_groups: no visible binding for '<<-' assignment to ‘df_sep’
-  visualize_groups: no visible binding for '<<-' assignment to ‘gg_sep’
 
 ## Downstream dependencies 
  There are currently no downstream dependencies for this package.
  
 comments:
-
+I have tried many work arounds to remove the error but cannot find a solution. However, the package works correctly and the solution might be simple. It looks like it might be coming from the running the example in the roxygen skeleton. 

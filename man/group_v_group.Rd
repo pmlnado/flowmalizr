@@ -19,5 +19,4 @@ A 1v1 visual of phenotype per group
 }
 \examples{
 group_v_group(1, 3)
-
 }

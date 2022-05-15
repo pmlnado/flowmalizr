@@ -27,11 +27,13 @@ flowmalizr <- function(path){
 
    xlsx_file <- readxl::read_excel(path)
    imported_df <- tidyr::pivot_longer(xlsx_file, cols = -c(1:3))
-   imported_df <<- imported_df %>%
+   imported_df <- imported_df %>%
       dplyr::mutate(cells_from_total = total_cell_count_per_mL*value/live_cells) %>%
       dplyr::select(1, 2, 4, 6) %>%
       dplyr::mutate(percentage_of_total = cells_from_total/total_cell_count_per_mL*100) %>%
       dplyr::arrange(percentage_of_total)
+
+imported_df <<- imported_df
 
 return(imported_df)
 
@@ -116,7 +118,7 @@ visualize_groups <- function(){
                                         digits = 2), "%")) %>%
       dplyr::arrange(dplyr::desc(percentage_of_total))
 
-   gg_sep <<- gg_sep
+gg_sep <<- gg_sep
 
    gg_visualize <- gg_sep %>%
    dplyr::filter(!is.na(percentage_of_total)) %>%
@@ -157,7 +159,7 @@ return(gggroup_visualize)
 #'
 #' @examples
 #' group_v_group(1, 3)
-#'
+
 group_v_group <- function(groupA, groupB){
 
    gg_1v1 <- gg_sep %>%
